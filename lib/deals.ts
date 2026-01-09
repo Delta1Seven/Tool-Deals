@@ -1,7 +1,5 @@
 import { unstable_cache } from "next/cache";
-import { promises as fs } from "fs";
-import path from "path";
-import { type RawDeal } from "./mockDeals";
+import { type RawDeal, mockDeals } from "./mockDeals";
 
 export type Deal = {
   asin: string;
@@ -18,8 +16,8 @@ export type Deal = {
 };
 
 const affiliateTag = "deals03ce-20";
-const USE_RAIN_API = process.env.USE_RAIN_API === "true";
-const cacheFilePath = path.join(process.cwd(), "data", "cachedDeals.json");
+const rainforestCacheKey = "rainforest-deals-tools-v1";
+const rainforestCacheRevalidate = 259200;
 
 const toAffiliateLink = (asin: string) =>
   `https://www.amazon.com/dp/${asin}?tag=${affiliateTag}`;
@@ -45,22 +43,18 @@ const normalizeDeal = (deal: RawDeal): Deal => {
   };
 };
 
-const readCachedDeals = async (): Promise<RawDeal[] | null> => {
-  try {
-    const contents = await fs.readFile(cacheFilePath, "utf8");
-    const parsed = JSON.parse(contents);
-    if (!Array.isArray(parsed)) {
-      return null;
-    }
-    return parsed as RawDeal[];
-  } catch (error) {
-    return null;
-  }
-};
+const isValidAsin = (asin: string) => /^[A-Z0-9]{10}$/.test(asin);
 
-const writeCachedDeals = async (deals: RawDeal[]): Promise<void> => {
-  await fs.mkdir(path.dirname(cacheFilePath), { recursive: true });
-  await fs.writeFile(cacheFilePath, JSON.stringify(deals, null, 2));
+const isValidImageUrl = (imageUrl: string) => {
+  if (!imageUrl || typeof imageUrl !== "string") {
+    return false;
+  }
+  try {
+    const parsed = new URL(imageUrl);
+    return parsed.protocol === "http:" || parsed.protocol === "https:";
+  } catch {
+    return false;
+  }
 };
 
 const fetchRainforestDeals = unstable_cache(
@@ -79,7 +73,7 @@ const fetchRainforestDeals = unstable_cache(
 
     const response = await fetch(url.toString(), {
       cache: "force-cache",
-      next: { revalidate: 3600 }
+      next: { revalidate: rainforestCacheRevalidate }
     });
 
     if (!response.ok) {
@@ -104,7 +98,7 @@ const fetchRainforestDeals = unstable_cache(
 
     return (data.search_results ?? [])
       .map((item) => {
-        const asin = item.asin ?? item.product?.asin ?? "";
+        const asin = (item.asin ?? item.product?.asin ?? "").toUpperCase();
         const imageUrl =
           item.product?.main_image?.link ?? item.product?.images?.[0]?.link ?? "";
 
@@ -118,29 +112,34 @@ const fetchRainforestDeals = unstable_cache(
           lastUpdated: item.updated_at ?? new Date().toISOString()
         };
       })
-      .filter(
-        (item) =>
-          item.asin.length === 10 && item.title && item.currentPrice > 0
-      )
+      .filter((item) => {
+        if (!item.title || item.currentPrice <= 0) {
+          return false;
+        }
+        if (!isValidAsin(item.asin)) {
+          return false;
+        }
+        if (!isValidImageUrl(item.imageUrl)) {
+          return false;
+        }
+        return true;
+      })
       .slice(0, 30);
   },
-  ["rainforest-deals"],
-  { revalidate: 3600 }
+  [rainforestCacheKey],
+  { revalidate: rainforestCacheRevalidate }
 );
 
 export const getDeals = async (): Promise<Deal[]> => {
-  const cachedDeals = await readCachedDeals();
-  if (cachedDeals) {
-    return cachedDeals.map(normalizeDeal);
-  }
+  const useRainApiRaw = process.env.USE_RAIN_API ?? "";
+  const useRainApi = useRainApiRaw.toLowerCase() === "true";
+  console.log(`USE_RAIN_API=${useRainApiRaw}`);
+  console.log(`Executing Rainforest fetch: ${useRainApi}`);
 
-  if (!USE_RAIN_API) {
-    return [];
+  if (!useRainApi) {
+    return mockDeals.map(normalizeDeal);
   }
 
   const rawDeals = await fetchRainforestDeals();
-  if (rawDeals.length) {
-    await writeCachedDeals(rawDeals);
-  }
   return rawDeals.map(normalizeDeal);
 };
