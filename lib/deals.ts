@@ -1,7 +1,7 @@
 import { unstable_cache } from "next/cache";
 import { promises as fs } from "fs";
 import path from "path";
-import { mockDeals, type RawDeal } from "./mockDeals";
+import { type RawDeal } from "./mockDeals";
 
 export type Deal = {
   asin: string;
@@ -100,6 +100,7 @@ const fetchRainforestDeals = unstable_cache(
 
     return (data.search_results ?? [])
       .filter((item) => item.asin && item.title && item.price?.value)
+      .slice(0, 30)
       .map((item) => ({
         asin: item.asin as string,
         title: item.title as string,
@@ -121,10 +122,12 @@ export const getDeals = async (): Promise<Deal[]> => {
   }
 
   if (!USE_RAIN_API) {
-    return mockDeals.map(normalizeDeal);
+    return [];
   }
 
   const rawDeals = await fetchRainforestDeals();
-  await writeCachedDeals(rawDeals);
+  if (rawDeals.length) {
+    await writeCachedDeals(rawDeals);
+  }
   return rawDeals.map(normalizeDeal);
 };
