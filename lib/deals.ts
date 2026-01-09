@@ -91,25 +91,38 @@ const fetchRainforestDeals = unstable_cache(
         asin?: string;
         title?: string;
         brand?: string;
-        image?: string;
         price?: { value?: number };
         price_before?: { value?: number };
         updated_at?: string;
+        product?: {
+          asin?: string;
+          main_image?: { link?: string };
+          images?: Array<{ link?: string }>;
+        };
       }>;
     };
 
     return (data.search_results ?? [])
-      .filter((item) => item.asin && item.title && item.price?.value)
-      .slice(0, 30)
-      .map((item) => ({
-        asin: item.asin as string,
-        title: item.title as string,
-        brand: item.brand ?? "Amazon",
-        imageUrl: item.image ?? "",
-        currentPrice: item.price?.value ?? 0,
-        originalPrice: item.price_before?.value ?? item.price?.value ?? 0,
-        lastUpdated: item.updated_at ?? new Date().toISOString()
-      }));
+      .map((item) => {
+        const asin = item.asin ?? item.product?.asin ?? "";
+        const imageUrl =
+          item.product?.main_image?.link ?? item.product?.images?.[0]?.link ?? "";
+
+        return {
+          asin,
+          title: item.title ?? "",
+          brand: item.brand ?? "Amazon",
+          imageUrl,
+          currentPrice: item.price?.value ?? 0,
+          originalPrice: item.price_before?.value ?? item.price?.value ?? 0,
+          lastUpdated: item.updated_at ?? new Date().toISOString()
+        };
+      })
+      .filter(
+        (item) =>
+          item.asin.length === 10 && item.title && item.currentPrice > 0
+      )
+      .slice(0, 30);
   },
   ["rainforest-deals"],
   { revalidate: 3600 }
