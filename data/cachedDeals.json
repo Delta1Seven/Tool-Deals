@@ -7,5 +7,221 @@
     "currentPrice": 149.99,
     "originalPrice": 219.99,
     "lastUpdated": "2024-05-30T10:15:00Z"
+  },
+  {
+    "asin": "B07P2",
+    "title": "Compact 18V Impact Driver with Quick-Change Chuck",
+    "brand": "Makita",
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/61yQ8E9QbXL._AC_SL1500_.jpg",
+    "currentPrice": 129.0,
+    "originalPrice": 179.0,
+    "lastUpdated": "2024-06-03T11:10:00Z"
+  },
+  {
+    "asin": "B08Z2",
+    "title": "20V Max Cordless Impact Wrench Kit",
+    "brand": "DeWalt",
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/61Qh4b3XeYL._AC_SL1500_.jpg",
+    "currentPrice": 179.0,
+    "originalPrice": 249.0,
+    "lastUpdated": "2024-06-02T08:45:00Z"
+  },
+  {
+    "asin": "B08Z3",
+    "title": "Atomic 20V Max Oscillating Multi-Tool",
+    "brand": "DeWalt",
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/71b6BfXf9yL._AC_SL1500_.jpg",
+    "currentPrice": 99.0,
+    "originalPrice": 149.0,
+    "lastUpdated": "2024-06-04T09:05:00Z"
+  },
+  {
+    "asin": "B0A22",
+    "title": "Heavy Duty 52-Inch Garage Storage Cabinet",
+    "brand": "Gladiator",
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/71Q3hD6i9GL._AC_SL1500_.jpg",
+    "currentPrice": 429.0,
+    "originalPrice": 599.0,
+    "lastUpdated": "2024-05-28T18:05:00Z"
+  },
+  {
+    "asin": "B0B12",
+    "title": "Smart Laser Distance Measure with Bluetooth",
+    "brand": "Bosch",
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/61X4pW5X6EL._AC_SL1500_.jpg",
+    "currentPrice": 79.99,
+    "originalPrice": 119.99,
+    "lastUpdated": "2024-06-01T14:20:00Z"
+  },
+  {
+    "asin": "B09C9",
+    "title": "Rolling Tool Chest with Soft-Close Drawers",
+    "brand": "Husky",
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/71hZ7P1EKQL._AC_SL1500_.jpg",
+    "currentPrice": 548.0,
+    "originalPrice": 699.0,
+    "lastUpdated": "2024-05-25T09:30:00Z"
+  },
+  {
+    "asin": "B09D1",
+    "title": "Mechanics Tool Set, 230-Piece",
+    "brand": "Craftsman",
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81t4nrl4iYL._AC_SL1500_.jpg",
+    "currentPrice": 169.0,
+    "originalPrice": 249.0,
+    "lastUpdated": "2024-06-05T13:15:00Z"
+  },
+  {
+    "asin": "B09D2",
+    "title": "V-Series Ratcheting Wrench Set, 10-Piece",
+    "brand": "Craftsman",
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/71ZpObxG9-L._AC_SL1500_.jpg",
+    "currentPrice": 89.0,
+    "originalPrice": 129.0,
+    "lastUpdated": "2024-06-03T16:40:00Z"
+  },
+  {
+    "asin": "B0C11",
+    "title": "High-Torque 1/2 in. Impact Wrench Kit",
+    "brand": "Milwaukee",
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/71P8iI0nYWL._AC_SL1500_.jpg",
+    "currentPrice": 229.0,
+    "originalPrice": 299.0,
+    "lastUpdated": "2024-06-02T15:30:00Z"
+  },
+  {
+    "asin": "B0C12",
+    "title": "M12 Fuel Compact Drill/Driver Kit",
+    "brand": "Milwaukee",
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/61a8UwT9cEL._AC_SL1500_.jpg",
+    "currentPrice": 159.0,
+    "originalPrice": 219.0,
+    "lastUpdated": "2024-06-04T12:00:00Z"
+  },
+  {
+    "asin": "B0C21",
+    "title": "Tekton 3/8 in. Drive 6-Point Socket Set, 74-Piece",
+    "brand": "Tekton",
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81bZ0M20FxL._AC_SL1500_.jpg",
+    "currentPrice": 109.0,
+    "originalPrice": 149.0,
+    "lastUpdated": "2024-06-05T08:10:00Z"
+  },
+  {
+    "asin": "B0C22",
+    "title": "Tekton 1/2 in. Drive Torque Wrench",
+    "brand": "Tekton",
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/71f7u8Zr3sL._AC_SL1500_.jpg",
+    "currentPrice": 74.0,
+    "originalPrice": 99.0,
+    "lastUpdated": "2024-06-01T07:55:00Z"
+  },
+  {
+    "asin": "B0C31",
+    "title": "GearWrench 120XP Ratchet Set, 3-Piece",
+    "brand": "GearWrench",
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/71mJ7GJX2UL._AC_SL1500_.jpg",
+    "currentPrice": 89.0,
+    "originalPrice": 129.0,
+    "lastUpdated": "2024-06-04T10:45:00Z"
+  },
+  {
+    "asin": "B0C32",
+    "title": "GearWrench Long Pattern Combination Wrench Set, 10-Piece",
+    "brand": "GearWrench",
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/71nWm2bV1AL._AC_SL1500_.jpg",
+    "currentPrice": 119.0,
+    "originalPrice": 159.0,
+    "lastUpdated": "2024-06-02T06:30:00Z"
+  },
+  {
+    "asin": "B0C41",
+    "title": "Neiko Impact Socket Set, 1/2 in. Drive, 35-Piece",
+    "brand": "Neiko",
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81m8OaXy8LL._AC_SL1500_.jpg",
+    "currentPrice": 64.0,
+    "originalPrice": 89.0,
+    "lastUpdated": "2024-06-05T11:25:00Z"
+  },
+  {
+    "asin": "B0C42",
+    "title": "Neiko Precision Screwdriver Set, 101-Piece",
+    "brand": "Neiko",
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81yO4wO9J3L._AC_SL1500_.jpg",
+    "currentPrice": 24.0,
+    "originalPrice": 39.0,
+    "lastUpdated": "2024-06-01T17:20:00Z"
+  },
+  {
+    "asin": "B0C51",
+    "title": "Irwin Vise-Grip GrooveLock Pliers Set",
+    "brand": "Irwin",
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/71j2mHf7SLL._AC_SL1500_.jpg",
+    "currentPrice": 34.0,
+    "originalPrice": 49.0,
+    "lastUpdated": "2024-06-03T18:10:00Z"
+  },
+  {
+    "asin": "B0C52",
+    "title": "Irwin Marathon Saw Blade, 7-1/4 in.",
+    "brand": "Irwin",
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/71G0JOf7fRL._AC_SL1500_.jpg",
+    "currentPrice": 17.0,
+    "originalPrice": 25.0,
+    "lastUpdated": "2024-06-02T20:05:00Z"
+  },
+  {
+    "asin": "B0C61",
+    "title": "Knipex Cobra Pliers Set, 3-Piece",
+    "brand": "Knipex",
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/71OSe6aEsYL._AC_SL1500_.jpg",
+    "currentPrice": 79.0,
+    "originalPrice": 109.0,
+    "lastUpdated": "2024-06-04T19:00:00Z"
+  },
+  {
+    "asin": "B0C62",
+    "title": "Knipex Mini Bolt Cutter, 8 in.",
+    "brand": "Knipex",
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/61ZlF1hX9UL._AC_SL1500_.jpg",
+    "currentPrice": 44.0,
+    "originalPrice": 62.0,
+    "lastUpdated": "2024-06-01T12:35:00Z"
+  },
+  {
+    "asin": "B0C71",
+    "title": "Wiha Precision Hex Screwdriver Set, 8-Piece",
+    "brand": "Wiha",
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/71-7u4b2dGL._AC_SL1500_.jpg",
+    "currentPrice": 39.0,
+    "originalPrice": 54.0,
+    "lastUpdated": "2024-06-05T14:55:00Z"
+  },
+  {
+    "asin": "B0C72",
+    "title": "Wiha Insulated Screwdriver Set, 7-Piece",
+    "brand": "Wiha",
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/71rWOP9-7jL._AC_SL1500_.jpg",
+    "currentPrice": 59.0,
+    "originalPrice": 79.0,
+    "lastUpdated": "2024-06-02T22:15:00Z"
+  },
+  {
+    "asin": "B0C81",
+    "title": "Stanley FatMax Tape Measure, 25 ft",
+    "brand": "Stanley",
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81rzuDwtmQL._AC_SL1500_.jpg",
+    "currentPrice": 19.0,
+    "originalPrice": 27.0,
+    "lastUpdated": "2024-06-04T15:40:00Z"
+  },
+  {
+    "asin": "B0C82",
+    "title": "Stanley Quick-Connect Air Compressor Kit",
+    "brand": "Stanley",
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/71Qz8t1vYDL._AC_SL1500_.jpg",
+    "currentPrice": 109.0,
+    "originalPrice": 149.0,
+    "lastUpdated": "2024-06-01T10:25:00Z"
   }
 ]
