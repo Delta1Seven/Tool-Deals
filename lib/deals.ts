@@ -1,4 +1,6 @@
 import { unstable_cache } from "next/cache";
+import { promises as fs } from "fs";
+import path from "path";
 import { mockDeals, type RawDeal } from "./mockDeals";
 
 export type Deal = {
@@ -16,7 +18,8 @@ export type Deal = {
 };
 
 const affiliateTag = "deals03ce-20";
-const USE_MOCK_DATA = process.env.USE_MOCK_DATA !== "false";
+const USE_RAIN_API = process.env.USE_RAIN_API === "true";
+const cacheFilePath = path.join(process.cwd(), "data", "cachedDeals.json");
 
 const toAffiliateLink = (asin: string) =>
   `https://www.amazon.com/dp/${asin}?tag=${affiliateTag}`;
@@ -40,6 +43,24 @@ const normalizeDeal = (deal: RawDeal): Deal => {
     link: toAffiliateLink(deal.asin),
     alerts: []
   };
+};
+
+const readCachedDeals = async (): Promise<RawDeal[] | null> => {
+  try {
+    const contents = await fs.readFile(cacheFilePath, "utf8");
+    const parsed = JSON.parse(contents);
+    if (!Array.isArray(parsed)) {
+      return null;
+    }
+    return parsed as RawDeal[];
+  } catch (error) {
+    return null;
+  }
+};
+
+const writeCachedDeals = async (deals: RawDeal[]): Promise<void> => {
+  await fs.mkdir(path.dirname(cacheFilePath), { recursive: true });
+  await fs.writeFile(cacheFilePath, JSON.stringify(deals, null, 2));
 };
 
 const fetchRainforestDeals = unstable_cache(
@@ -94,6 +115,16 @@ const fetchRainforestDeals = unstable_cache(
 );
 
 export const getDeals = async (): Promise<Deal[]> => {
-  const rawDeals = USE_MOCK_DATA ? mockDeals : await fetchRainforestDeals();
+  const cachedDeals = await readCachedDeals();
+  if (cachedDeals) {
+    return cachedDeals.map(normalizeDeal);
+  }
+
+  if (!USE_RAIN_API) {
+    return mockDeals.map(normalizeDeal);
+  }
+
+  const rawDeals = await fetchRainforestDeals();
+  await writeCachedDeals(rawDeals);
   return rawDeals.map(normalizeDeal);
 };
