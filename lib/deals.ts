@@ -28,9 +28,15 @@ const normalizeDeal = (deal: RawDeal): Deal => {
     : 0;
 
   return {
-    ...deal,
+    asin: deal.asin,
+    title: deal.title,
+    brand: deal.brand,
+    image: deal.imageUrl,
+    currentPrice: deal.currentPrice,
+    originalPrice: deal.originalPrice,
     amountOff,
     percentOff,
+    droppedAt: deal.lastUpdated,
     link: toAffiliateLink(deal.asin),
     alerts: []
   };
@@ -77,10 +83,10 @@ const fetchRainforestDeals = unstable_cache(
         asin: item.asin as string,
         title: item.title as string,
         brand: item.brand ?? "Amazon",
-        image: item.image ?? "",
+        imageUrl: item.image ?? "",
         currentPrice: item.price?.value ?? 0,
         originalPrice: item.price_before?.value ?? item.price?.value ?? 0,
-        droppedAt: item.updated_at ?? new Date().toISOString()
+        lastUpdated: item.updated_at ?? new Date().toISOString()
       }));
   },
   ["rainforest-deals"],
