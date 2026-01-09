@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useMemo, useState } from "react";
 import type { Deal } from "@/lib/deals";
 
@@ -19,6 +20,8 @@ const formatPrice = (value: number) =>
 
 export default function DealsClient({ deals }: { deals: Deal[] }) {
   const [sortBy, setSortBy] = useState("percent");
+  const fallbackImage =
+    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Crect width='160' height='160' fill='%23f5f5f5'/%3E%3Cpath d='M48 104h64l-16-24-12 16-8-10-28 18z' fill='%23d4d4d4'/%3E%3Ccircle cx='62' cy='58' r='10' fill='%23e5e5e5'/%3E%3C/svg%3E";
 
   const sortedDeals = useMemo(() => {
     const nextDeals = [...deals];
@@ -39,16 +42,16 @@ export default function DealsClient({ deals }: { deals: Deal[] }) {
   }, [deals, sortBy]);
 
   return (
-    <section className="space-y-8">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+    <section className="space-y-6">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="text-xs uppercase tracking-[0.3em] text-neutral-400">
             Curated Amazon deals
           </p>
-          <h1 className="mt-3 text-3xl font-semibold text-neutral-900 sm:text-4xl">
+          <h1 className="mt-2 text-2xl font-semibold text-neutral-900 sm:text-3xl">
             Tools & garage equipment
           </h1>
-          <p className="mt-3 max-w-2xl text-sm text-neutral-500">
+          <p className="mt-2 max-w-2xl text-sm text-neutral-500">
             Minimal, up-to-date pricing with clean comparisons for the best tool savings.
           </p>
         </div>
@@ -71,13 +74,13 @@ export default function DealsClient({ deals }: { deals: Deal[] }) {
         </div>
       </div>
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {sortedDeals.map((deal) => (
           <article
             key={deal.asin}
-            className="flex h-full flex-col rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm"
+            className="flex h-full flex-col rounded-2xl border border-neutral-200 bg-white p-4 shadow-sm"
           >
-            <div className="flex items-start justify-between gap-4">
+            <div className="flex items-start justify-between gap-3">
               <span className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-400">
                 {deal.brand}
               </span>
@@ -85,31 +88,44 @@ export default function DealsClient({ deals }: { deals: Deal[] }) {
                 {deal.percentOff}% off
               </span>
             </div>
-            <div className="mt-5 flex justify-center">
-              <img
-                src={deal.image}
-                alt={deal.title}
-                className="h-32 w-32 rounded-xl object-contain"
-              />
+            <div className="mt-4 flex justify-center">
+              <div className="relative h-20 w-20 overflow-hidden rounded-xl border border-neutral-100 bg-neutral-50">
+                <Image
+                  src={deal.image || fallbackImage}
+                  alt={deal.title}
+                  fill
+                  sizes="80px"
+                  className="object-contain"
+                  unoptimized
+                />
+              </div>
             </div>
-            <h2 className="mt-6 text-base font-semibold text-neutral-900">
+            <h2
+              className="mt-4 text-sm font-semibold text-neutral-900"
+              style={{
+                display: "-webkit-box",
+                WebkitLineClamp: 2,
+                WebkitBoxOrient: "vertical",
+                overflow: "hidden"
+              }}
+            >
               {deal.title}
             </h2>
-            <div className="mt-4 flex items-baseline gap-3">
-              <span className="text-lg font-semibold text-neutral-900">
+            <div className="mt-3 flex items-baseline gap-2">
+              <span className="text-base font-semibold text-neutral-900">
                 {formatPrice(deal.currentPrice)}
               </span>
               <span className="text-sm text-neutral-400 line-through">
                 {formatPrice(deal.originalPrice)}
               </span>
             </div>
-            <div className="mt-2 text-sm text-neutral-500">
+            <div className="mt-1 text-xs text-neutral-500">
               Save {formatPrice(deal.amountOff)}
             </div>
-            <div className="mt-6">
+            <div className="mt-4">
               <a
                 href={deal.link}
-                className="inline-flex w-full items-center justify-center rounded-full border border-neutral-200 bg-neutral-50 px-4 py-2 text-sm font-medium text-neutral-700 transition hover:border-neutral-300 hover:text-neutral-900"
+                className="inline-flex w-full items-center justify-center rounded-full border border-neutral-200 bg-neutral-50 px-3 py-2 text-xs font-medium text-neutral-700 transition hover:border-neutral-300 hover:text-neutral-900"
                 target="_blank"
                 rel="noreferrer"
               >

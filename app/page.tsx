@@ -5,7 +5,7 @@ export default async function Page() {
   const deals = await getDeals();
 
   return (
-    <main className="mx-auto flex min-h-screen w-full max-w-6xl flex-col px-6 py-14">
+    <main className="mx-auto flex min-h-screen w-full max-w-6xl flex-col px-5 py-10">
       <DealsClient deals={deals} />
     </main>
   );
